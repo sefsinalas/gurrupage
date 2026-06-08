@@ -56,5 +56,5 @@ export const travels = [
 export const socials = [
   { name: 'Facebook', url: 'https://facebook.com', icon: 'facebook' },
   { name: 'Instagram', url: 'https://instagram.com', icon: 'instagram' },
-  { name: 'TikTok', url: 'https://tiktok.com', icon: 'tiktok' }
+  { name: 'TikTok', url: 'https://www.tiktok.com/@gurru.boys', icon: 'tiktok' }
 ];

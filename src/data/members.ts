@@ -23,7 +23,7 @@ export const members: Member[] = [
     birthday: '18 de Oct - 2000',
     description: 'Líder oficial de las decisiones rechazadas. Su habilidad especial es activar una Trap Card de "No" a cualquier plan divertido. Rata negativa por naturaleza.',
     tier: 'S',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Gaby'
+    image: '/members/gaby.jpg'
   },
   {
     name: 'JR',
@@ -31,7 +31,7 @@ export const members: Member[] = [
     birthday: '20 de Ago - 1994',
     description: 'Su sangre es 50% hemoglobina y 50% tinta de carta de Yu-Gi-Oh!. Si no está jugando, está pensando en el próximo combo prohibido.',
     tier: 'S',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jr'
+    image: '/members/jr.jpg'
   },
   {
     name: 'Enzo',
@@ -39,7 +39,7 @@ export const members: Member[] = [
     birthday: '4 de Jul',
     description: 'Un pilar fundamental de la mesa. Siempre listo para el duelo, nunca para la derrota.',
     tier: 'S',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Enzo'
+    image: '/members/enzo.jpg'
   },
   {
     name: 'Funda',
@@ -56,7 +56,7 @@ export const members: Member[] = [
     birthday: '25 de Feb',
     description: 'Gurruboy de alto rango. Sus jugadas son tan limpias como su historial de victorias.',
     tier: 'A',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Nico'
+    image: '/members/nico.jpg'
   },
   {
     name: 'Diego',
@@ -145,7 +145,7 @@ export const members: Member[] = [
     birthday: '31 de mar',
     description: 'No estuvo desde el Génesis, pero se ganó su lugar. Su asistencia es como un drop rate de carta rara: difícil pero apreciada.',
     tier: 'B',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Pablo'
+    image: '/members/pablo.jpg'
   },
   {
     name: 'Mario',
@@ -169,7 +169,7 @@ export const members: Member[] = [
     birthday: 'A confirmar',
     description: 'Nos abandonó, pero su sombra aún recorre las mesas de juego. Se lo extraña (a veces).',
     tier: 'B',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Manu'
+    image: '/members/manu.jpg'
   },
   // TIER C
   {
@@ -178,7 +178,7 @@ export const members: Member[] = [
     birthday: '27 de Julio',
     description: 'Tiene el espíritu Gurruboy a tope, pero es el "Newbie". Tiene una cafetería, así que su castigo por derecho de piso es traer café para todos. Juega mejor de lo que admite.',
     tier: 'C',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Hector'
+    image: '/members/hector.jpg'
   },
   // TIER D
   {
