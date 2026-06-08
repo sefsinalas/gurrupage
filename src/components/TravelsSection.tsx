@@ -1,7 +1,13 @@
+'use client';
+
+import { useState } from 'react';
 import { travels } from '@/data/content';
-import { Plane, Users } from 'lucide-react';
+import { Plane, Users, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function TravelsSection() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   return (
     <section className="py-16 px-4 bg-white">
       <div className="max-w-4xl mx-auto">
@@ -51,9 +57,13 @@ export default function TravelsSection() {
                 <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-2">
                   {travel.images.length > 0 ? (
                     travel.images.map((img, i) => (
-                      <div key={i} className="aspect-video sm:aspect-square border-4 border-accent-black overflow-hidden hover:scale-105 transition-transform bg-gray-200">
+                      <button 
+                        key={i} 
+                        onClick={() => setSelectedImage(img)}
+                        className="aspect-video sm:aspect-square border-4 border-accent-black overflow-hidden hover:scale-105 transition-transform bg-gray-200"
+                      >
                         <img src={img} alt={`${travel.title} ${i}`} className="w-full h-full object-cover" />
-                      </div>
+                      </button>
                     ))
                   ) : (
                     <div className="col-span-3 aspect-[21/9] border-4 border-dashed border-gray-300 flex items-center justify-center text-gray-400 font-bold anime-text text-xl bg-gray-50">
@@ -66,6 +76,33 @@ export default function TravelsSection() {
           ))}
         </div>
       </div>
+
+      {/* Image Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 md:p-10">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="relative w-full h-full flex items-center justify-center"
+              onClick={() => setSelectedImage(null)}
+            >
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-0 right-0 z-10 p-2 text-white hover:text-accent-red transition-colors"
+              >
+                <X size={40} />
+              </button>
+              <img
+                src={selectedImage}
+                alt="Full size"
+                className="max-w-full max-h-full object-contain border-4 border-white shadow-2xl"
+              />
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

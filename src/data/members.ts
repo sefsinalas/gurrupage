@@ -3,7 +3,7 @@ export interface Member {
   nickname: string;
   birthday: string;
   description: string;
-  tier: 'S' | 'A' | 'B' | 'C' | 'D' | 'Ex';
+  tier: 'S' | 'A' | 'B' | 'C' | 'D';
   image: string;
 }
 
@@ -108,14 +108,6 @@ export const members: Member[] = [
   },
   // TIER B
   {
-    name: 'Leo Musculoso',
-    nickname: 'Musculoso',
-    birthday: '5 de Julio',
-    description: 'Dice que no se siente muy Gurruboy, pero tiene más esencia que un sobre de 1ra Edición. Una leyenda que siempre vuelve.',
-    tier: 'Ex',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Leo'
-  },
-  {
     name: 'Hada',
     nickname: 'Hada',
     birthday: '20 de Abr',
@@ -129,7 +121,7 @@ export const members: Member[] = [
     birthday: '30 de Abr',
     description: 'A un paso de la gloria. Está farmeando experiencia para subir a la A, solo le falta un Top 8.',
     tier: 'B',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Tuki'
+    image: '/members/pablo.jpg'
   },
   {
     name: 'DjAlex',
@@ -180,6 +172,14 @@ export const members: Member[] = [
     tier: 'C',
     image: '/members/hector.jpg'
   },
+  {
+    name: 'Leo Musculoso',
+    nickname: 'Musculoso',
+    birthday: '5 de Julio',
+    description: 'Dice que no se siente muy Gurruboy, pero tiene más esencia que un sobre de 1ra Edición. Una leyenda que siempre vuelve.',
+    tier: 'C',
+    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Leo'
+  },
   // TIER D
   {
     name: 'Dany',
@@ -188,14 +188,5 @@ export const members: Member[] = [
     description: 'El jugador de Yu-Gi-Oh! más estándar del mundo. Ni muy meta, ni muy fun. El equilibrio perfecto de la mediocridad (con amor).',
     tier: 'D',
     image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Dany'
-  },
-  // EX GURRUBOYS
-  {
-    name: 'Chancho',
-    nickname: 'Chancho',
-    birthday: '15 de Noviembre',
-    description: 'Un Gurruboy que tomó otros rumbos, pero su legado permanece en la memoria del grupo.',
-    tier: 'Ex',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Chancho'
   }
 ];

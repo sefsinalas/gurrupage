@@ -13,7 +13,6 @@ const tiers = [
   { label: 'B', color: 'bg-tier-b', shadow: 'shadow-[#ffff4f]/50' },
   { label: 'C', color: 'bg-tier-c', shadow: 'shadow-[#4fff4f]/50' },
   { label: 'D', color: 'bg-tier-d', shadow: 'shadow-[#4f9fff]/50' },
-  { label: 'Ex', color: 'bg-gray-400', shadow: 'shadow-gray-400/50' },
 ];
 
 export default function TierList({ onMemberClick }: TierListProps) {
