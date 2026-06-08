@@ -26,9 +26,9 @@ export const travels = [
     description: 'La expedición máxima. Fuimos a dejar a Salta en lo más alto (o al menos a participar).',
     attendees: ['Jose', 'Gaby', 'Jr', 'Enzo', 'Funda', 'Nico', 'Diego', 'Fede'],
     images: [
-      'https://picsum.photos/seed/nacio1/800/600',
-      'https://picsum.photos/seed/nacio2/800/600',
-      'https://picsum.photos/seed/nacio3/800/600'
+      '/images/nacio/nacio1.png',
+      '/images/nacio/nacio2.png',
+      '/images/nacio/nacio3.png'
     ]
   },
   {
@@ -38,9 +38,9 @@ export const travels = [
     description: 'Asado, pileta y duelos bajo el sol de Salta. La mejor forma de cerrar el año.',
     attendees: ['Casi todos los Gurruboys'],
     images: [
-      'https://picsum.photos/seed/quijano1/800/600',
-      'https://picsum.photos/seed/quijano2/800/600',
-      'https://picsum.photos/seed/quijano3/800/600'
+      '/images/quijano/quijano1.png',
+      '/images/quijano/quijano2.png',
+      '/images/quijano/quijano3.png'
     ]
   },
   {
