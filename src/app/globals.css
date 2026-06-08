@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fdfdfd;
+  --foreground: #1a1a1a;
+  --accent-red: #c0392b;
+  --accent-gold: #f1c40f;
+  --accent-black: #2c3e50;
+  --tier-s: #ff7f7f;
+  --tier-a: #ffbf7f;
+  --tier-b: #ffff7f;
+  --tier-c: #7fff7f;
+  --tier-d: #7fbfff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent-red: var(--accent-red);
+  --color-accent-gold: var(--accent-gold);
+  --color-accent-black: var(--accent-black);
+  --color-tier-s: var(--tier-s);
+  --color-tier-a: var(--tier-a);
+  --color-tier-b: var(--tier-b);
+  --color-tier-c: var(--tier-c);
+  --color-tier-d: var(--tier-d);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  background-image: radial-gradient(#e5e7eb 0.5px, transparent 0.5px);
+  background-size: 20px 20px;
+}
+
+.japanese-border {
+  border: 4px solid var(--accent-black);
+  box-shadow: 4px 4px 0px var(--accent-red);
+}
+
+.tier-card {
+  transition: all 0.2s ease-in-out;
+}
+
+.tier-card:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.anime-text {
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  font-style: italic;
+}
