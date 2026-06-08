@@ -38,9 +38,9 @@ export const travels = [
     description: 'Asado, pileta y duelos bajo el sol de Salta. La mejor forma de cerrar el año.',
     attendees: ['Casi todos los Gurruboys'],
     images: [
-      '/images/quijano/quijano1.png',
-      '/images/quijano/quijano2.png',
-      '/images/quijano/quijano3.png'
+      '/quijano/quijano1.png',
+      '/quijano/quijano2.png',
+      '/quijano/quijano3.png'
     ]
   },
   {
