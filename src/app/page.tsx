@@ -5,6 +5,7 @@ import { Member } from '@/data/members';
 import Hero from '@/components/Hero';
 import GamesSection from '@/components/GamesSection';
 import TierList from '@/components/TierList';
+import BirthdayCalendar from '@/components/BirthdayCalendar';
 import MemberModal from '@/components/MemberModal';
 import TravelsSection from '@/components/TravelsSection';
 import PlacesSection from '@/components/PlacesSection';
@@ -33,6 +34,7 @@ export default function Home() {
         
         <section id="members" className="py-20 bg-white">
           <TierList onMemberClick={setSelectedMember} />
+          <BirthdayCalendar onMemberClick={setSelectedMember} />
         </section>
 
         <PlacesSection />
