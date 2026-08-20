@@ -20,7 +20,7 @@ export default function Hero() {
         </h1>
         
         <p className="max-w-xl mx-auto text-xl md:text-2xl font-bold text-gray-700 italic border-y-4 border-accent-gold py-2">
-          "Donde los duelos son ley y el café es obligatorio."
+          &ldquo;Donde los duelos son ley y el café es obligatorio.&rdquo;
         </p>
 
         <div className="flex justify-center gap-4 pt-4">

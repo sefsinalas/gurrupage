@@ -10,7 +10,7 @@ export default function PlacesSection() {
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {places.map((place, i) => (
+          {places.map((place) => (
             <div key={place.name} className="flex gap-4 items-start p-4 bg-white border-4 border-accent-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
               <div className="bg-accent-red text-white p-2">
                 <MapPin size={24} />

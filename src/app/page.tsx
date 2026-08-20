@@ -9,6 +9,7 @@ import BirthdayCalendar from '@/components/BirthdayCalendar';
 import MemberModal from '@/components/MemberModal';
 import TravelsSection from '@/components/TravelsSection';
 import PlacesSection from '@/components/PlacesSection';
+import JrBirthdaySpecial from '@/components/JrBirthdaySpecial';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -16,6 +17,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
+      {/* Especial Cumpleaños JR - 20 de Agosto */}
+      <JrBirthdaySpecial />
+
       {/* Navbar Minimalista estilo Japonés */}
       <nav className="fixed top-0 left-0 w-full z-40 bg-white/80 backdrop-blur-md border-b-4 border-accent-black px-4 py-2 flex justify-between items-center">
         <span className="anime-text text-xl italic tracking-tighter">

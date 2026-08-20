@@ -2,7 +2,7 @@
 
 import { Member } from '@/data/members';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Swords, Zap, ShieldAlert, Award, Cake, Flame, AlertTriangle } from 'lucide-react';
+import { X, Swords, Zap, Award, Cake, Flame, AlertTriangle } from 'lucide-react';
 
 interface MemberModalProps {
   member: Member | null;
@@ -64,7 +64,7 @@ export default function MemberModal({ member, onClose }: MemberModalProps) {
                     {member.name}
                   </h2>
                   <p className="text-lg font-bold text-accent-black font-mono">
-                    aka "{member.nickname}"
+                    aka &ldquo;{member.nickname}&rdquo;
                   </p>
                 </div>
 
@@ -78,7 +78,7 @@ export default function MemberModal({ member, onClose }: MemberModalProps) {
 
                 {/* Bio / Description */}
                 <div className="mt-4 bg-white p-3.5 border-l-4 border-accent-red border-y-2 border-r-2 border-accent-black text-sm italic text-gray-800 leading-relaxed font-sans shadow-[2px_2px_0px_#000]">
-                  "{member.description}"
+                  &ldquo;{member.description}&rdquo;
                 </div>
               </div>
 

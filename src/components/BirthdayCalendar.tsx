@@ -122,7 +122,7 @@ export default function BirthdayCalendar({ onMemberClick }: BirthdayCalendarProp
     return allWithParsed
       .map(({ member, parsed }) => {
         let diffMonth = parsed.month - todayMonth;
-        let diffDay = parsed.day - todayDay;
+        const diffDay = parsed.day - todayDay;
         if (diffMonth < 0 || (diffMonth === 0 && diffDay < 0)) {
           diffMonth += 12;
         }

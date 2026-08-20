@@ -1,7 +1,7 @@
 import { socials } from '@/data/content';
-import { MessageCircle, Camera, Music } from 'lucide-react';
+import { MessageCircle, Camera, Music, LucideIcon } from 'lucide-react';
 
-const icons: Record<string, any> = {
+const icons: Record<string, LucideIcon> = {
   facebook: MessageCircle,
   instagram: Camera,
   tiktok: Music,

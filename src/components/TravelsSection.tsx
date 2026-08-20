@@ -34,7 +34,7 @@ export default function TravelsSection() {
                     </h3>
                   </div>
                   <p className="text-gray-600 leading-relaxed italic">
-                    "{travel.description}"
+                    &ldquo;{travel.description}&rdquo;
                   </p>
                   
                   {travel.attendees.length > 0 && (
