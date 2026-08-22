@@ -69,20 +69,20 @@ export const members: Member[] = [
       { name: 'Motociclista', level: 60, raw: '3' }
     ]
   },
+
+  // TIER A
   {
     name: 'Funda',
     nickname: 'Funda',
     birthday: '27 de Ago',
     description: 'Protege sus cartas y su honor con la misma intensidad. Un Gurruboy de pura cepa.',
-    tier: 'S',
+    tier: 'A',
     image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Funda',
     skills: [
       { name: 'Fitness', level: 80, raw: '4' },
       { name: 'Papá', level: 99, raw: '5' }
     ]
   },
-
-  // TIER A
   {
     name: 'Nico',
     nickname: 'Nico',
