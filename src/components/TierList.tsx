@@ -36,36 +36,22 @@ export default function TierList({ onMemberClick }: TierListProps) {
             <div className="flex-1 bg-[#1a1a1a] p-3 flex flex-wrap gap-4 items-center">
               {members
                 .filter((m) => m.tier === tier.label)
-                .map((member) => {
-                  const isJr = member.name === 'JR';
-                  const isAug20 = typeof window !== 'undefined' 
-                    ? (new Date().getMonth() === 7 && new Date().getDate() === 20)
-                    : false;
-
-                  return (
-                    <motion.button
-                      key={member.name}
-                      whileHover={{ scale: 1.15 }}
-                      whileTap={{ scale: 0.9 }}
-                      onClick={() => onMemberClick(member)}
-                      className={`relative w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-accent-black overflow-hidden bg-white shadow-lg transition-all hover:shadow-accent-gold/50 ${
-                        isJr && isAug20 ? 'ring-4 ring-accent-gold ring-offset-2 ring-offset-black animate-pulse' : ''
-                      }`}
-                    >
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-full object-cover"
-                      />
-                      {isJr && isAug20 && (
-                        <div className="absolute -top-1 -right-1 bg-accent-gold text-[10px] px-1 rounded-full border border-black shadow">
-                          👑
-                        </div>
-                      )}
-                      <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-colors" />
-                    </motion.button>
-                  );
-                })}
+                .map((member) => (
+                  <motion.button
+                    key={member.name}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => onMemberClick(member)}
+                    className="relative w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-accent-black overflow-hidden bg-white shadow-lg transition-all hover:shadow-accent-gold/50"
+                  >
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-colors" />
+                  </motion.button>
+                ))}
             </div>
           </div>
         ))}
