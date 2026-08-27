@@ -113,7 +113,7 @@ export const members: Member[] = [
     birthday: '23 de Nov - 1985',
     description: 'Anfitrión de lujo y duelista de temer. Su casa es el Coliseo donde se forjan las leyendas.',
     tier: 'A',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Fede',
+    image: '/members/fede.jpg',
     skills: [
       { name: 'Belleza', level: 99, raw: '5' },
       { name: 'Inteligencia', level: 99, raw: '5' },
