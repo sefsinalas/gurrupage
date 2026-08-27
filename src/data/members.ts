@@ -22,7 +22,7 @@ export const members: Member[] = [
     birthday: '25 de Jun',
     description: 'Admin supremo del grupo de WhatsApp. Se encuentra en su arco de redención fitness, bajando de peso para que el Duel Disk no le apriete el brazo.',
     tier: 'S',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Jose',
+    image: '/members/jose.jpg',
     skills: [
       { name: 'Estresar Gatos', level: 99, raw: '5' },
       { name: 'Tenis', level: 80, raw: '4' },
@@ -77,7 +77,7 @@ export const members: Member[] = [
     birthday: '27 de Ago',
     description: 'Protege sus cartas y su honor con la misma intensidad. Un Gurruboy de pura cepa.',
     tier: 'A',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Funda',
+    image: '/members/funda.jpg',
     skills: [
       { name: 'Fitness', level: 80, raw: '4' },
       { name: 'Papá', level: 99, raw: '5' }
@@ -101,7 +101,7 @@ export const members: Member[] = [
     birthday: '5 de Jul',
     description: 'Estratega nato. Dicen que puede leer tu mano solo con el sonido de las cartas al barajarse.',
     tier: 'A',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Diego',
+    image: '/members/diego.jpg',
     skills: [
       { name: 'Vóley', level: 80, raw: '4' },
       { name: 'Disolver Sociedades', level: 99, raw: '5' }
@@ -126,7 +126,7 @@ export const members: Member[] = [
     birthday: '5 de Dic',
     description: 'Joven promesa que ya es realidad. No te fíes de su cara amable en medio de un duelo.',
     tier: 'A',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Bauti',
+    image: '/members/bauti.jpg',
     skills: [
       { name: 'Idiomas', level: 99, raw: '5' },
       { name: 'Ajedrez', level: 60, raw: '3' },
@@ -139,7 +139,7 @@ export const members: Member[] = [
     birthday: '7 de Feb',
     description: 'Sus jugadas son eléctricas. Aparece y desaparece del meta con la velocidad del rayo.',
     tier: 'A',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Zap',
+    image: '/members/zap.jpg',
     skills: [
       { name: 'Gym', level: 99, raw: '5' },
       { name: 'Ingeniero', level: 40, raw: '2' },
@@ -153,7 +153,7 @@ export const members: Member[] = [
     birthday: 'A confirmar',
     description: 'Consistencia pura. Te saca a patadas de un boliche o te prepara un rico café.',
     tier: 'A',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Marcos',
+    image: '/members/marcos.jpg',
     skills: [
       { name: 'Bipolaridad', level: 99, raw: '5' },
       { name: 'Bouncer / Barista', level: 99, raw: '5' },
@@ -166,7 +166,7 @@ export const members: Member[] = [
     birthday: '12 de Oct',
     description: 'Juez oficial del grupo. Solo juega Genesys y decks "fun" (que solo son divertidos para él mientras te gana).',
     tier: 'A',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Fito',
+    image: '/members/fito.jpg',
     skills: [
       { name: 'Misterio', level: 80, raw: '4' },
       { name: 'Anti-Meta', level: 80, raw: '4' }
@@ -180,7 +180,7 @@ export const members: Member[] = [
     birthday: '20 de Abr',
     description: 'Otro que duda de su identidad "Boy". Estamos investigando si es por su mazo de hadas o por una crisis existencial.',
     tier: 'B',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Hada',
+    image: '/members/hada.jpg',
     skills: [
       { name: 'Manoseo', level: 80, raw: '4' },
       { name: 'Romper Celus', level: 99, raw: '5' },
@@ -193,7 +193,7 @@ export const members: Member[] = [
     birthday: '30 de Abr',
     description: 'A un paso de la gloria. Está farmeando experiencia para subir a la A, solo le falta un Top 8.',
     tier: 'B',
-    image: '/members/pablo.jpg',
+    image: '/members/leo-flor.jpg',
     skills: [
       { name: 'Anti-Meta', level: 99, raw: '5' },
       { name: 'Manualidades', level: 80, raw: '4' }
@@ -205,7 +205,7 @@ export const members: Member[] = [
     birthday: '24 de Jun',
     description: 'Leyenda urbana. Se dice que si vas a una juntada y hay luna llena, Alex tampoco viene.',
     tier: 'B',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alex',
+    image: '/members/alex.jpg',
     skills: [
       { name: 'Audios Molestos', level: 99, raw: '5' },
       { name: 'DJ', level: 80, raw: '4' },
@@ -231,7 +231,7 @@ export const members: Member[] = [
     birthday: '20 de Jun',
     description: 'Jugador de Magic. Nos abandonó por el maná, pero el corazón siempre vuelve al Reino de los Duelos.',
     tier: 'B',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Mario',
+    image: '/members/mario.jpg',
     skills: [
       { name: 'Magic', level: 80, raw: '4' },
       { name: 'Olfato', level: -40, raw: '-2' }
@@ -243,7 +243,7 @@ export const members: Member[] = [
     birthday: '4 de Ene',
     description: 'No viene seguido, pero cuando aparece, el aura de buena gente sube el nivel del grupo.',
     tier: 'B',
-    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Lau',
+    image: '/members/lau.jpg',
     skills: [
       { name: 'Cocina', level: 80, raw: '4' },
       { name: 'Yu-Gi-Oh!', level: 40, raw: '2' },
