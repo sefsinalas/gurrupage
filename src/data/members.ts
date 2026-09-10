@@ -150,7 +150,7 @@ export const members: Member[] = [
   {
     name: 'Marcos',
     nickname: 'Marcos',
-    birthday: 'A confirmar',
+    birthday: '10 de Sep',
     description: 'Consistencia pura. Te saca a patadas de un boliche o te prepara un rico café.',
     tier: 'A',
     image: '/members/marcos.jpg',
