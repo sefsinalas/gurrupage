@@ -4,17 +4,52 @@ on:
   pull_request_target:
     branches: [main]
     types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: Pull request number to validate
+        required: true
+        type: string
 
 jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      branch: ${{ steps.pr.outputs.branch }}
+      sha: ${{ steps.pr.outputs.sha }}
+      url: ${{ steps.pr.outputs.url }}
+    steps:
+      - name: Resolve pull request
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ inputs.pr_number || github.event.pull_request.number }}
+        shell: bash
+        run: |
+          branch="$(gh pr view "$PR_NUMBER" --json headRefName --jq .headRefName)"
+          sha="$(gh pr view "$PR_NUMBER" --json headRefOid --jq .headRefOid)"
+          url="$(gh pr view "$PR_NUMBER" --json url --jq .url)"
+          if [[ ! "$branch" =~ ^member/[a-z0-9-]+/ ]]; then
+            echo "Refusing non-member branch" >&2
+            exit 1
+          fi
+          echo "branch=$branch" >> "$GITHUB_OUTPUT"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
   validate:
-    if: startsWith(github.event.pull_request.head.ref, 'member/')
+    needs: metadata
     runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ needs.metadata.outputs.sha }}
           fetch-depth: 0
           persist-credentials: false
       - name: Load trusted validator from main
@@ -28,7 +63,7 @@ jobs:
           cache: npm
       - name: Validate assigned folder
         env:
-          BRANCH: ${{ github.event.pull_request.head.ref }}
+          BRANCH: ${{ needs.metadata.outputs.branch }}
         shell: bash
         run: |
           slug="${BRANCH#member/}"
@@ -38,7 +73,7 @@ jobs:
       - run: npm run build
 
   merge:
-    needs: validate
+    needs: [metadata, validate]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -48,5 +83,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_URL: ${{ needs.metadata.outputs.url }}
         run: gh pr merge "$PR_URL" --squash --delete-branch
