@@ -1,0 +1,37 @@
+name: Open member page pull request
+
+on:
+  push:
+    branches:
+      - "member/**"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  open:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open or update pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          BRANCH: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          slug="${BRANCH#member/}"
+          slug="${slug%%/*}"
+          if [[ ! "$slug" =~ ^[a-z0-9-]+$ ]]; then
+            echo "Invalid member branch" >&2
+            exit 1
+          fi
+
+          existing="$(gh pr list --head "$BRANCH" --base main --state open --json number --jq '.[0].number // empty')"
+          if [[ -z "$existing" ]]; then
+            gh pr create \
+              --base main \
+              --head "$BRANCH" \
+              --title "Actualizar página de $slug" \
+              --body "Cambio solicitado desde WhatsApp para la sección asignada a **$slug**. La validación y el merge son automáticos si el cambio respeta los límites."
+          fi

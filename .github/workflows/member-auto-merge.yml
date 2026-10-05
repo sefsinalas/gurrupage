@@ -1,0 +1,52 @@
+name: Validate and merge member page
+
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+jobs:
+  validate:
+    if: startsWith(github.event.pull_request.head.ref, 'member/')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Load trusted validator from main
+        shell: bash
+        run: |
+          git fetch --no-tags origin main
+          git show origin/main:scripts/validate-member-site.mjs > .git/trusted-member-validator.mjs
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Validate assigned folder
+        env:
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+        shell: bash
+        run: |
+          slug="${BRANCH#member/}"
+          slug="${slug%%/*}"
+          node .git/trusted-member-validator.mjs "$slug" --base origin/main
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+
+  merge:
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Merge validated change
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: gh pr merge "$PR_URL" --squash --delete-branch

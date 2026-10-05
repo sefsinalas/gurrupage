@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "validate:member-site": "node scripts/validate-member-site.mjs",
     "start": "next start",
     "lint": "eslint"
   },
