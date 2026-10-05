@@ -6,6 +6,7 @@ on:
       - "member/**"
 
 permissions:
+  actions: write
   contents: read
   pull-requests: write
 
@@ -29,9 +30,12 @@ jobs:
 
           existing="$(gh pr list --head "$BRANCH" --base main --state open --json number --jq '.[0].number // empty')"
           if [[ -z "$existing" ]]; then
-            gh pr create \
+            pr_url="$(gh pr create \
               --base main \
               --head "$BRANCH" \
               --title "Actualizar página de $slug" \
-              --body "Cambio solicitado desde WhatsApp para la sección asignada a **$slug**. La validación y el merge son automáticos si el cambio respeta los límites."
+              --body "Cambio solicitado desde WhatsApp para la sección asignada a **$slug**. La validación y el merge son automáticos si el cambio respeta los límites.")"
+            existing="${pr_url##*/}"
           fi
+
+          gh workflow run member-auto-merge.yml --ref main -f pr_number="$existing"
