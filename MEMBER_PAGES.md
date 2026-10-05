@@ -13,4 +13,8 @@ Automated WhatsApp changes must:
 - never include scripts, forms, iframes, embeds, remote CSS, tracking, executable content, or secrets;
 - create a pull request rather than pushing directly to `main`.
 
+Branches under `member/**` open a pull request automatically. A trusted workflow validates the
+assigned path and production build before merging; the job that executes untrusted branch content
+has read-only repository permissions, while the separate merge job never checks out that content.
+
 The sandboxed member route is intentionally static. A request that needs accounts, payments, data collection, server code, or external automation is out of scope.

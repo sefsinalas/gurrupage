@@ -86,7 +86,7 @@ if (totalBytes > 2_000_000) fail("member site exceeds the 2 MB total limit");
 if (base) {
   const changed = execFileSync(
     "git",
-    ["diff", "--name-only", "--diff-filter=ACMRTUXB", `${base}...HEAD`],
+    ["diff", "--name-only", "--diff-filter=ACDMRTUXB", `${base}...HEAD`],
     { cwd: repoRoot, encoding: "utf8" },
   )
     .trim()
