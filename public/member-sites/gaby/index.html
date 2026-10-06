@@ -7,13 +7,162 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; base-uri 'none'; form-action 'none'"
     />
-    <title>Hola Mundo</title>
+    <title>El papiro de Gaby</title>
     <style>
-      html, body { height: 100%; }
-      body { margin: 0; display: grid; place-items: center; font-family: system-ui, sans-serif; }
+      :root {
+        --papiro: #e7c985;
+        --tinta: #352316;
+        --sello: #8d3625;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 28px 16px;
+        color: var(--tinta);
+        font-family: Georgia, "Times New Roman", serif;
+        background: #3b2a1d;
+      }
+
+      .papiro {
+        position: relative;
+        width: min(700px, 100%);
+        min-height: 620px;
+        padding: clamp(38px, 8vw, 72px) clamp(28px, 9vw, 82px);
+        overflow: hidden;
+        background:
+          radial-gradient(ellipse at 20% 20%, rgba(255,255,255,.27), transparent 26%),
+          radial-gradient(ellipse at 84% 77%, rgba(96,50,18,.15), transparent 31%),
+          repeating-linear-gradient(0deg, rgba(97,55,19,.06) 0 1px, transparent 1px 5px),
+          var(--papiro);
+        border: 1px solid #936a34;
+        box-shadow: 0 2px 0 #b58846, 0 14px 33px rgba(0,0,0,.5);
+      }
+
+      .papiro::before,
+      .papiro::after {
+        content: "";
+        position: absolute;
+        right: -4%;
+        left: -4%;
+        height: 26px;
+        border-radius: 50%;
+        background: #c59c58;
+        box-shadow: inset 0 -5px 9px rgba(70,38,16,.18);
+      }
+      .papiro::before { top: -12px; }
+      .papiro::after { bottom: -12px; transform: rotate(180deg); }
+
+      .preludio {
+        margin: 0 0 18px;
+        font-size: .78rem;
+        font-weight: bold;
+        letter-spacing: .14em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.1rem, 8vw, 4.5rem);
+        font-weight: normal;
+        line-height: .95;
+        text-align: center;
+      }
+
+      .subtitulo {
+        margin: 18px auto 34px;
+        max-width: 460px;
+        font-size: clamp(1rem, 3vw, 1.27rem);
+        font-style: italic;
+        line-height: 1.45;
+        text-align: center;
+      }
+
+      ol {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        counter-reset: ventajas;
+      }
+
+      li {
+        position: relative;
+        padding: 16px 0 16px 48px;
+        border-top: 1px solid rgba(53,35,22,.35);
+        font-size: clamp(1.02rem, 3vw, 1.25rem);
+        line-height: 1.35;
+        counter-increment: ventajas;
+      }
+      li::before {
+        content: counter(ventajas);
+        position: absolute;
+        top: 14px;
+        left: 0;
+        display: grid;
+        width: 30px;
+        height: 30px;
+        place-items: center;
+        border: 2px solid var(--tinta);
+        border-radius: 50%;
+        font-weight: bold;
+      }
+
+      .firma {
+        margin: 35px 0 0;
+        font-size: 1.05rem;
+        font-style: italic;
+        text-align: right;
+      }
+
+      .sello {
+        position: absolute;
+        right: 12%;
+        bottom: 5%;
+        display: grid;
+        width: 88px;
+        aspect-ratio: 1;
+        place-items: center;
+        border: 4px double #f0cf87;
+        border-radius: 50%;
+        color: #f5d58f;
+        background: var(--sello);
+        box-shadow: 2px 3px 0 rgba(53,35,22,.35);
+        font-family: Arial, sans-serif;
+        font-size: .72rem;
+        font-weight: 900;
+        letter-spacing: .08em;
+        line-height: 1.1;
+        text-align: center;
+        text-transform: uppercase;
+        transform: rotate(11deg);
+      }
+
+      @media (max-width: 450px) {
+        .papiro { min-height: 580px; }
+        .sello { width: 68px; font-size: .57rem; }
+      }
     </style>
   </head>
   <body>
-    <h1>Hola Mundo</h1>
+    <main class="papiro">
+      <p class="preludio">Manuscrito de la cofradía de Gaby</p>
+      <h1>El noble arte de jugar con amigos</h1>
+      <p class="subtitulo">Breve tratado sobre por qué, a veces, una partida compartida le gana a una tarde encerrado entre apuntes.</p>
+
+      <ol>
+        <li>Se practica la estrategia sin que nadie anuncie un examen sorpresa.</li>
+        <li>Se aprende a cooperar, discutir reglas y volver a hablarse después de perder.</li>
+        <li>Las mejores anécdotas no vienen subrayadas: aparecen cuando el equipo se junta.</li>
+        <li>Una risa con amigos recarga más que tres cafés mirando el mismo párrafo.</li>
+        <li>La victoria dura poco; el recuerdo de la juntada, bastante más.</li>
+      </ol>
+
+      <p class="firma">— Gaby, escriba oficial de las buenas partidas</p>
+      <div class="sello">Aprobado<br />por la junta</div>
+    </main>
   </body>
 </html>
