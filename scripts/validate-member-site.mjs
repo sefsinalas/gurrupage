@@ -22,8 +22,17 @@ if (!slug || !registry.members.some((member) => member.slug === slug)) {
 }
 
 const siteRoot = join(repoRoot, "public/member-sites", slug);
-const allowedExtensions = new Set([".html", ".css", ".png", ".jpg", ".jpeg", ".webp", ".gif"]);
-const textExtensions = new Set([".html", ".css"]);
+const allowedExtensions = new Set([
+  ".html",
+  ".css",
+  ".js",
+  ".png",
+  ".jpg",
+  ".jpeg",
+  ".webp",
+  ".gif",
+]);
+const textExtensions = new Set([".html", ".css", ".js"]);
 const files = [];
 
 function walk(directory) {
@@ -45,6 +54,7 @@ if (!files.some(({ path }) => path === join(siteRoot, "index.html"))) {
 if (files.length > 20) fail("a member site may contain at most 20 files");
 
 let totalBytes = 0;
+let totalTextBytes = 0;
 for (const file of files) {
   totalBytes += file.size;
   const extension = extname(file.path).toLowerCase();
@@ -54,6 +64,10 @@ for (const file of files) {
   if (textExtensions.has(extension) && file.size > 100_000) {
     fail(`text file exceeds 100 KB: ${relative(repoRoot, file.path)}`);
   }
+  if (extension === ".js" && file.size > 50_000) {
+    fail(`JavaScript file exceeds 50 KB: ${relative(repoRoot, file.path)}`);
+  }
+  if (textExtensions.has(extension)) totalTextBytes += file.size;
   if (!textExtensions.has(extension) && file.size > 1_500_000) {
     fail(`image exceeds 1.5 MB: ${relative(repoRoot, file.path)}`);
   }
@@ -61,7 +75,6 @@ for (const file of files) {
   if (extension === ".html") {
     const html = readFileSync(file.path, "utf8");
     const blockedHtml = [
-      /<\s*script\b/i,
       /<\s*(iframe|object|embed|form|input|textarea|select)\b/i,
       /<\s*meta[^>]+http-equiv\s*=\s*["']?refresh/i,
       /<\s*base\b/i,
@@ -72,6 +85,32 @@ for (const file of files) {
     if (blockedHtml.some((pattern) => pattern.test(html))) {
       fail(`dangerous active HTML is forbidden: ${relative(repoRoot, file.path)}`);
     }
+
+    const scriptTags = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)];
+    const scriptStarts = [...html.matchAll(/<script\b/gi)];
+    if (scriptTags.length !== scriptStarts.length) {
+      fail(`malformed script element: ${relative(repoRoot, file.path)}`);
+    }
+    for (const [, attributes, inlineBody] of scriptTags) {
+      if (inlineBody.trim()) {
+        fail(`inline JavaScript is forbidden; use a local .js file: ${relative(repoRoot, file.path)}`);
+      }
+      const srcMatch = attributes.match(/\bsrc\s*=\s*(["'])(.*?)\1/i);
+      if (!srcMatch) {
+        fail(`script elements require a local src: ${relative(repoRoot, file.path)}`);
+      }
+      const src = srcMatch[2].trim();
+      if (
+        !src ||
+        !/^(?:\.\/)?[a-zA-Z0-9][a-zA-Z0-9._/-]*\.js(?:\?[a-zA-Z0-9._=-]+)?$/.test(src) ||
+        src.startsWith("/") ||
+        src.includes("..") ||
+        src.includes(":") ||
+        src.startsWith("//")
+      ) {
+        fail(`only local relative JavaScript files are allowed: ${relative(repoRoot, file.path)}`);
+      }
+    }
   }
 
   if (extension === ".css") {
@@ -80,8 +119,31 @@ for (const file of files) {
       fail(`remote or executable CSS is forbidden: ${relative(repoRoot, file.path)}`);
     }
   }
+
+  if (extension === ".js") {
+    const javascript = readFileSync(file.path, "utf8");
+    const blockedJavaScript = [
+      /\bfetch\s*\(/i,
+      /\bXMLHttpRequest\b/i,
+      /\bWebSocket\b/i,
+      /\bEventSource\b/i,
+      /\bsendBeacon\s*\(/i,
+      /\bimportScripts\s*\(/i,
+      /\bimport\s*\(/i,
+      /\beval\s*\(/i,
+      /\bnew\s+Function\b/i,
+      /\bdocument\s*\.\s*cookie\b/i,
+    ];
+    if (blockedJavaScript.some((pattern) => pattern.test(javascript))) {
+      fail(`networking or dynamic code is forbidden: ${relative(repoRoot, file.path)}`);
+    }
+    if (javascript.split(/\r?\n/).some((line) => line.length > 2_000)) {
+      fail(`minified or oversized JavaScript line is forbidden: ${relative(repoRoot, file.path)}`);
+    }
+  }
 }
 if (totalBytes > 2_000_000) fail("member site exceeds the 2 MB total limit");
+if (totalTextBytes > 150_000) fail("member site exceeds the 150 KB total text limit");
 
 if (base) {
   const changed = execFileSync(
