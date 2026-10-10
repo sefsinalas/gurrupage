@@ -8,6 +8,7 @@ import TierList from '@/components/TierList';
 import BirthdayCalendar from '@/components/BirthdayCalendar';
 import MemberModal from '@/components/MemberModal';
 import TravelsSection from '@/components/TravelsSection';
+import TournamentsSection from '@/components/TournamentsSection';
 import PlacesSection from '@/components/PlacesSection';
 import Footer from '@/components/Footer';
 
@@ -22,7 +23,9 @@ export default function Home() {
         <span className="anime-text text-xl italic tracking-tighter">
           GURRU<span className="text-accent-red">BOYS</span>
         </span>
-        <div className="flex gap-4 text-[10px] font-bold uppercase tracking-widest">
+        <div className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest">
+          <a href="#members" className="hover:text-accent-red transition-colors hidden sm:inline">Miembros</a>
+          <a href="#tournaments" className="hover:text-accent-red transition-colors hidden sm:inline">Torneos</a>
           <span className="text-accent-red">SALTA_CAP</span>
           <span className="text-accent-black">ARG_2026</span>
         </div>
@@ -41,6 +44,8 @@ export default function Home() {
         <PlacesSection />
 
         <TravelsSection />
+
+        <TournamentsSection />
 
         <Footer />
       </div>

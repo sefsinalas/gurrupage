@@ -52,6 +52,15 @@ export default function TravelsSection() {
                       </div>
                     </div>
                   )}
+
+                  {travel.id === 'nacio-2026' && (
+                    <a
+                      href="#tournaments"
+                      className="inline-flex items-center gap-2 bg-accent-black hover:bg-accent-red text-white text-xs font-mono font-bold px-3 py-2 border-2 border-accent-black transition-colors"
+                    >
+                      <span>🏆 Ver resultados del torneo</span>
+                    </a>
+                  )}
                 </div>
 
                 <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-2">
