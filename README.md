@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GurruBoys (`gurrupage`)
 
-## Getting Started
+> Official web platform for the **GurruBoys** gaming and dueling community. Built with a Japanese Neo-Brutalist arcade aesthetic, featuring dynamic tier lists, interactive member RPG stats, an annual birthday calendar, and event chronicles.
 
-First, run the development server:
+---
+
+## 🚀 Quickstart
+
+### Prerequisites
+- **Node.js**: `v20.0.0` or higher (LTS recommended)
+- **npm**: `v10.0.0` or higher
 
 ```bash
+# 1. Clone repository
+git clone https://github.com/sefsinalas/gurrupage.git
+cd gurrupage
+
+# 2. Install dependencies
+npm install
+
+# 3. Start local development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧪 Quality Assurance (QA) & Verification
 
-## Learn More
+The project includes an automated quality assurance pipeline. All changes must pass all quality gates before merging into `main`.
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Run the complete QA gate (typecheck + lint + validate:data + build)
+npm run qa
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Granular QA Commands:
+- **`npm run typecheck`**: Validates strict TypeScript types across the entire project (`tsc --noEmit`).
+- **`npm run lint`**: Audits code conventions with ESLint 9 and Next.js Core Web Vitals rules.
+- **`npm run validate:data`**: Audits data integrity in `members.ts` and `content.ts`, verifying image assets on disk and birthday date formats.
+- **`npm run build`**: Runs Next.js 16 Turbopack production compilation and static prerendering.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📚 Comprehensive Documentation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The repository maintains an extensive documentation hub in the [`docs/`](./docs/README.md) directory:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 🏛️ [**Architecture & System Design**](./docs/architecture.md): Next.js 16 App Router, React 19, Tailwind CSS 4, Framer Motion, and design tokens.
+- ⚙️ [**Setup & Installation Guide**](./docs/setup-and-installation.md): Environment setup, commands, Netlify hosting, and troubleshooting.
+- 🛡️ [**QA Test Strategy**](./docs/qa/test-strategy.md): The 5-layer testing pyramid, CI/CD pipeline, and regression prevention.
+- 📋 [**QA Checklist & Test Cases**](./docs/qa/qa-checklist-and-test-cases.md): 12 functional test cases, responsive viewport matrix, and bug triage.
+- 🗄️ [**Data Integrity & Schemas**](./docs/qa/data-integrity.md): Strict schemas, Spanish birthday parsing specifications, and asset standards.
+- 🔀 [**Git & PR Workflow**](./docs/workflows/git-and-pr-workflow.md): Branching conventions, Conventional Commits, and PR review standards.
+- 🤖 [**AI Agent Playbook**](./docs/workflows/ai-agent-playbook.md): Operational guide, SOPs, and mandatory quality gates for autonomous AI agents.
+
+---
+
+## 🛠️ Technology Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (Turbopack, App Router, SSG)
+- **UI & State**: [React 19](https://react.dev/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Animations**: [Framer Motion 12](https://www.framer.com/motion/)
+- **Type Safety**: [TypeScript 5](https://www.typescriptlang.org/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Hosting**: [Netlify](https://www.netlify.com/) (`@netlify/plugin-nextjs`)
