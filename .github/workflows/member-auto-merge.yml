@@ -34,8 +34,8 @@ jobs:
           sha="$(gh pr view "$PR_NUMBER" --json headRefOid --jq .headRefOid)"
           url="$(gh pr view "$PR_NUMBER" --json url --jq .url)"
           if [[ ! "$branch" =~ ^member/[a-z0-9-]+/ && ! "$branch" =~ ^game1/[a-z0-9-]+$ ]]; then
-            echo "Refusing non-bot branch" >&2
-            exit 1
+            echo "Skipping non-bot branch"
+            exit 0
           fi
           echo "branch=$branch" >> "$GITHUB_OUTPUT"
           echo "sha=$sha" >> "$GITHUB_OUTPUT"
@@ -43,6 +43,7 @@ jobs:
 
   validate:
     needs: metadata
+    if: needs.metadata.outputs.branch != ''
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -79,6 +80,7 @@ jobs:
 
   merge:
     needs: [metadata, validate]
+    if: needs.metadata.outputs.branch != ''
     runs-on: ubuntu-latest
     permissions:
       contents: write
