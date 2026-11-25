@@ -1,5 +1,6 @@
 import { games } from '@/data/content';
 import { Gamepad2 } from 'lucide-react';
+import Link from 'next/link';
 
 export default function GamesSection() {
   return (
@@ -34,6 +35,10 @@ export default function GamesSection() {
               </h3>
             </div>
           ))}
+          <Link href="/juego1" className="p-4 border-2 border-accent-gold bg-accent-red transition-colors hover:bg-accent-red/80 focus-visible:outline-4 focus-visible:outline-white">
+            <div className="text-accent-gold text-xs font-mono mb-2">JUGÁ ONLINE ↗</div>
+            <h3 className="text-xl font-bold uppercase tracking-tighter">Memoria Gurru</h3>
+          </Link>
         </div>
       </div>
     </section>
