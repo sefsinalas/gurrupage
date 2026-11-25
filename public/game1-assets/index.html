@@ -3,23 +3,83 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Memoria Gurru</title>
+    <meta name="theme-color" content="#19112d">
+    <title>Mazo Gurru — Mini TCG</title>
     <link rel="stylesheet" href="style.css">
     <script src="game.js" defer></script>
   </head>
   <body>
-    <main>
-      <header>
-        <small>JUEGO 1</small>
-        <h1>MEMORIA GURRU</h1>
-        <p>Encontrá las seis parejas. Tocá dos cartas para darlas vuelta. Traé tus ideas al chat.</p>
+    <main class="app">
+      <header class="hero">
+        <p class="eyebrow">JUEGO 1 · MULTIJUGADOR LOCAL</p>
+        <h1>MAZO GURRU</h1>
+        <p class="subtitle">Un mini TCG para bardearse con cariño, sin estudiar un reglamento de 80 páginas.</p>
       </header>
-      <section class="controls" aria-label="Estado del juego">
-        <p>Movimientos: <strong id="moves">0</strong></p>
-        <button id="restart" type="button">Nueva partida</button>
+
+      <section id="setup" class="panel setup-panel" aria-labelledby="setup-title">
+        <h2 id="setup-title">Armá la mesa</h2>
+        <p>De 2 a 6 jugadores. Usen un solo teléfono o compu y pásenlo en cada turno.</p>
+        <div class="count-picker" aria-label="Cantidad de jugadores">
+          <span>Jugadores</span>
+          <div id="count-buttons" class="choice-buttons">
+            <button type="button" data-count="2">2</button>
+            <button type="button" data-count="3">3</button>
+            <button type="button" data-count="4" class="selected">4</button>
+            <button type="button" data-count="5">5</button>
+            <button type="button" data-count="6">6</button>
+          </div>
+        </div>
+        <div id="player-fields" class="player-fields" aria-label="Nombres de jugadores"></div>
+        <button id="start" class="primary-button" type="button">Mezclar el mazo</button>
       </section>
-      <section id="board" class="board" aria-label="Cartas de memoria"></section>
-      <p id="status" class="status" role="status">0 de 6 parejas encontradas</p>
+
+      <section id="game" class="game hidden" aria-live="polite">
+        <div class="game-topbar">
+          <button id="rules" class="text-button" type="button">¿Cómo se juega?</button>
+          <button id="new-game" class="text-button" type="button">Nueva partida</button>
+        </div>
+
+        <aside id="rules-card" class="rules-card hidden">
+          <strong>Reglas en 20 segundos</strong>
+          <ol>
+            <li>En tu turno jugás una carta y volvés a tener tres en mano.</li>
+            <li>Las cartas de <b>Fama</b> suman puntos; <b>Chicana</b> roba fama; <b>Escudo</b> frena una chicana.</li>
+            <li>El primero en llegar a <b>12 de fama</b> gana la gloria y el derecho a agrandarse un rato.</li>
+          </ol>
+        </aside>
+
+        <section id="scoreboard" class="scoreboard" aria-label="Puntajes"></section>
+
+        <section class="turn-panel" aria-labelledby="turn-title">
+          <p id="round-label" class="round-label">Ronda 1</p>
+          <h2 id="turn-title">Preparando la partida…</h2>
+          <p id="turn-help">Pasen el dispositivo al jugador indicado.</p>
+
+          <div id="pass-screen" class="pass-screen">
+            <span class="pass-icon" aria-hidden="true">🂠</span>
+            <p>Que nadie mire la mano ajena.</p>
+            <button id="reveal" class="primary-button" type="button">Mostrar mi mano</button>
+          </div>
+
+          <div id="play-area" class="hidden">
+            <p class="hand-title">Elegí una carta para jugar</p>
+            <div id="hand" class="hand" aria-label="Tu mano"></div>
+            <div id="target-picker" class="target-picker hidden" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section class="log-panel" aria-labelledby="log-title">
+          <h2 id="log-title">Crónica del bardo</h2>
+          <ol id="log" class="log"></ol>
+        </section>
+      </section>
+
+      <section id="winner" class="winner hidden" aria-live="assertive">
+        <p class="eyebrow">PARTIDA TERMINADA</p>
+        <h2 id="winner-title">Ganó alguien</h2>
+        <p id="winner-copy"></p>
+        <button id="play-again" class="primary-button" type="button">Revancha inmediata</button>
+      </section>
     </main>
   </body>
 </html>
