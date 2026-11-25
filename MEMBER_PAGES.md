@@ -2,7 +2,7 @@
 
 The member-to-slug mapping in `src/data/member-pages.json` is immutable. Only Federico may authorize changes to it.
 
-Automated WhatsApp changes must:
+Automated WhatsApp changes to member pages must:
 
 - use a branch named `member/<assigned-slug>/<change>`;
 - modify files only inside `public/member-sites/<assigned-slug>/`;

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Memoria Gurru</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <small>JUEGO 1</small>
+        <h1>MEMORIA GURRU</h1>
+        <p>Encontrá las seis parejas. Tocá dos cartas para darlas vuelta.</p>
+      </header>
+      <section class="controls" aria-label="Estado del juego">
+        <p>Movimientos: <strong id="moves">0</strong></p>
+        <button id="restart" type="button">Nueva partida</button>
+      </section>
+      <section id="board" class="board" aria-label="Cartas de memoria"></section>
+      <p id="status" class="status" role="status">0 de 6 parejas encontradas</p>
+    </main>
+  </body>
+</html>

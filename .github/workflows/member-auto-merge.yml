@@ -33,9 +33,9 @@ jobs:
           branch="$(gh pr view "$PR_NUMBER" --json headRefName --jq .headRefName)"
           sha="$(gh pr view "$PR_NUMBER" --json headRefOid --jq .headRefOid)"
           url="$(gh pr view "$PR_NUMBER" --json url --jq .url)"
-          if [[ ! "$branch" =~ ^member/[a-z0-9-]+/ ]]; then
-            echo "Refusing non-member branch" >&2
-            exit 1
+          if [[ ! "$branch" =~ ^member/[a-z0-9-]+/ && ! "$branch" =~ ^game1/[a-z0-9-]+$ ]]; then
+            echo "Skipping non-bot branch"
+            exit 0
           fi
           echo "branch=$branch" >> "$GITHUB_OUTPUT"
           echo "sha=$sha" >> "$GITHUB_OUTPUT"
@@ -43,6 +43,7 @@ jobs:
 
   validate:
     needs: metadata
+    if: needs.metadata.outputs.branch != ''
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -57,6 +58,7 @@ jobs:
         run: |
           git fetch --no-tags origin main
           git show origin/main:scripts/validate-member-site.mjs > .git/trusted-member-validator.mjs
+          git show origin/main:scripts/validate-game1.mjs > .git/trusted-game-validator.mjs
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -66,14 +68,19 @@ jobs:
           BRANCH: ${{ needs.metadata.outputs.branch }}
         shell: bash
         run: |
-          slug="${BRANCH#member/}"
-          slug="${slug%%/*}"
-          node .git/trusted-member-validator.mjs "$slug" --base origin/main
+          if [[ "$BRANCH" == game1/* ]]; then
+            node .git/trusted-game-validator.mjs origin/main
+          else
+            slug="${BRANCH#member/}"
+            slug="${slug%%/*}"
+            node .git/trusted-member-validator.mjs "$slug" --base origin/main
+          fi
       - run: npm ci --ignore-scripts
       - run: npm run build
 
   merge:
     needs: [metadata, validate]
+    if: needs.metadata.outputs.branch != ''
     runs-on: ubuntu-latest
     permissions:
       contents: write
