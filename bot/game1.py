@@ -64,9 +64,9 @@ def pr_state(name):
 
 def validate(repo):
     changed = changed_paths(repo)
-    if not changed or any(not p.startswith("public/juego1/") for p in changed):
-        raise ValueError("Solo se pueden publicar cambios dentro de public/juego1/.")
-    root = repo / "public/juego1"
+    if not changed or any(not p.startswith("public/game1-assets/") for p in changed):
+        raise ValueError("Solo se pueden publicar cambios dentro de public/game1-assets/.")
+    root = repo / "public/game1-assets"
     if not (root / "index.html").is_file():
         raise ValueError("El juego debe conservar index.html.")
     files = 0
@@ -86,7 +86,7 @@ def validate(repo):
 def context(repo):
     if repo.exists():
         if changed_paths(repo):
-            print(json.dumps({"editable_directory": str(repo / "public/juego1"), "state": "unpublished_changes"}))
+            print(json.dumps({"editable_directory": str(repo / "public/game1-assets"), "state": "unpublished_changes"}))
             return
         previous = branch(repo)
         if previous.startswith("game1/") and pr_state(previous) != "merged":
@@ -94,7 +94,7 @@ def context(repo):
         shutil.rmtree(repo)
     repo.parent.mkdir(parents=True, exist_ok=True)
     porcelain.clone(PUBLIC_REMOTE, str(repo), branch="main", depth=1, errstream=io.BytesIO())
-    print(json.dumps({"editable_directory": str(repo / "public/juego1"), "public_url": "https://gurruboys.com.ar/juego1"}))
+    print(json.dumps({"editable_directory": str(repo / "public/game1-assets"), "public_url": "https://gurruboys.com.ar/juego1"}))
 
 
 def publish(repo):
@@ -106,7 +106,7 @@ def publish(repo):
     git = Repo(str(repo))
     git.refs[ref] = git.head()
     git.refs.set_symbolic_ref(b"HEAD", ref)
-    porcelain.add(str(repo), paths=["public/juego1"])
+    porcelain.add(str(repo), paths=["public/game1-assets"])
     validate(repo)
     porcelain.commit(str(repo), message=b"Update community game", author=b"Fede Bot <bot@gurruboys.local>", committer=b"Fede Bot <bot@gurruboys.local>")
     porcelain.push(

@@ -17,7 +17,7 @@ const document = {
   createElement: makeElement,
 };
 const context = vm.createContext({ document, setTimeout: (callback) => { resolve = callback; }, clearTimeout: () => { resolve = undefined; }, Math });
-vm.runInContext(readFileSync('public/juego1/game.js', 'utf8'), context);
+vm.runInContext(readFileSync('public/game1-assets/game.js', 'utf8'), context);
 
 const board = elements.get('#board');
 const moves = elements.get('#moves');

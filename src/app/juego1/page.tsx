@@ -13,7 +13,7 @@ export default function Juego1() {
         ← Volver a GurruBoys
       </Link>
       <iframe
-        src="/juego1/index.html"
+        src="/game1-assets/index.html"
         title="Juego 1 de los GurruBoys"
         sandbox="allow-scripts"
         referrerPolicy="no-referrer"
