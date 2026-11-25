@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - "public/member-sites/**"
-      - "public/juego1/**"
+      - "public/game1-assets/**"
 
 permissions:
   contents: read

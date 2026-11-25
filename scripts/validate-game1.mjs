@@ -7,11 +7,11 @@ if (!base) throw new Error('Usage: node scripts/validate-game1.mjs <base-ref>');
 
 const changed = execFileSync('git', ['diff', '--name-only', `${base}...HEAD`], { encoding: 'utf8' })
   .trim().split('\n').filter(Boolean);
-if (!changed.length || changed.some((path) => !path.startsWith('public/juego1/'))) {
-  throw new Error('Game changes must stay inside public/juego1/');
+if (!changed.length || changed.some((path) => !path.startsWith('public/game1-assets/'))) {
+  throw new Error('Game changes must stay inside public/game1-assets/');
 }
 
-const root = 'public/juego1';
+const root = 'public/game1-assets';
 let total = 0;
 let files = 0;
 function inspect(path) {
